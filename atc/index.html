@@ -3,13 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATC Career Guide</title>
+    <title>Air Traffic Controller (ATC) Career Pathway</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom font for a modern look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .step-icon {
+            @apply flex items-center justify-center w-12 h-12 rounded-full text-white shadow-lg flex-shrink-0;
+        }
+        /* Custom utility for the vertical timeline line */
+        .timeline-line {
+            height: calc(100% + 2rem); /* Extend beyond card for connection */
+            @apply absolute left-6 top-0 w-1 bg-blue-200;
+        }
+        /* Style for the radial progress bar */
+        .radial-progress {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(closest-side, white 80%, transparent 81%),
+                        conic-gradient(#3b82f6 calc(var(--progress) * 1%), #e0f2fe 0);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <div class="max-w-4xl mx-auto p-6">
-        <!-- Your content here -->
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-6 md:p-10">
+        <!-- Header and Intro -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
+                <i class="fas fa-plane-departure text-blue-600 mr-2"></i> Air Traffic Controller Career
+            </h1>
+            <p class="text-xl text-gray-600">
+                A High-Stakes, High-Reward Path with the US FAA
+            </p>
+            <hr class="mt-4 border-blue-100">
+        </header>
+
+        <!-- [Rest of your ATC content will go here] -->
+        
         <div class="bg-yellow-50 p-5 rounded-lg mt-6 shadow-md border-l-4 border-yellow-500">
             <h3 class="font-semibold text-lg text-gray-800 mb-3 flex items-center">
                 <i class="fas fa-lightbulb mr-2 text-yellow-600"></i> Prep Tips from Successful Candidates
