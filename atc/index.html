@@ -4,69 +4,724 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Air Traffic Controller (ATC) Career Pathway</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Custom font for a modern look */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            --blue-50: #eff6ff;
+            --blue-100: #dbeafe;
+            --blue-200: #bfdbfe;
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --green-50: #f0fdf4;
+            --green-600: #16a34a;
+            --purple-50: #f5f3ff;
+            --purple-600: #7c3aed;
+            --yellow-50: #fffbeb;
+            --yellow-600: #d97706;
+            --red-50: #fef2f2;
+            --red-600: #dc2626;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f9fb;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--gray-50);
+            padding: 1rem;
         }
-        .step-icon {
-            @apply flex items-center justify-center w-12 h-12 rounded-full text-white shadow-lg flex-shrink-0;
+        
+        .container {
+            max-width: 72rem;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
-        /* Custom utility for the vertical timeline line */
-        .timeline-line {
-            height: calc(100% + 2rem); /* Extend beyond card for connection */
-            @apply absolute left-6 top-0 w-1 bg-blue-200;
+        
+        .card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
         }
-        /* Style for the radial progress bar */
-        .radial-progress {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: radial-gradient(closest-side, white 80%, transparent 81%),
-                        conic-gradient(#3b82f6 calc(var(--progress) * 1%), #e0f2fe 0);
-            font-size: 1.25rem;
+        
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
             font-weight: 700;
+            color: var(--blue-600);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .header p {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            
+            .md\:grid-cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        
+        .bg-blue-50 { background-color: var(--blue-50); }
+        .bg-green-50 { background-color: var(--green-50); }
+        .bg-yellow-50 { background-color: var(--yellow-50); }
+        .bg-purple-50 { background-color: var(--purple-50); }
+        .bg-red-50 { background-color: var(--red-50); }
+        
+        .p-4 { padding: 1rem; }
+        .p-5 { padding: 1.25rem; }
+        .p-6 { padding: 1.5rem; }
+        
+        .rounded-lg { border-radius: 0.5rem; }
+        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        
+        .text-blue-600 { color: var(--blue-600); }
+        .text-green-600 { color: var(--green-600); }
+        .text-yellow-600 { color: var(--yellow-600); }
+        .text-red-600 { color: var(--red-600); }
+        .text-purple-600 { color: var(--purple-600); }
+        .text-gray-600 { color: var(--gray-600); }
+        .text-gray-700 { color: var(--gray-700); }
+        .text-gray-800 { color: var(--gray-800); }
+        
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .gap-3 { gap: 0.75rem; }
+        
+        .step {
+            display: flex;
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            background-color: var(--blue-600);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .resource-card {
+            display: block;
+            padding: 1.25rem;
+            background-color: var(--blue-50);
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .resource-card:hover {
+            background-color: var(--blue-100);
+            transform: translateY(-2px);
+        }
+        
+        .resource-card h3 {
+            color: var(--blue-600);
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .resource-card p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin: 0;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="p-4 md:p-8">
-    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-6 md:p-10">
-        <!-- Header and Intro -->
-        <header class="text-center mb-10">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
-                <i class="fas fa-plane-departure text-blue-600 mr-2"></i> Air Traffic Controller Career
-            </h1>
-            <p class="text-xl text-gray-600">
-                A High-Stakes, High-Reward Path with the US FAA
-            </p>
-            <hr class="mt-4 border-blue-100">
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-plane-departure" style="color: var(--blue-600);"></i> Air Traffic Controller Career</h1>
+            <p>Your Guide to a Rewarding Career in Air Traffic Control</p>
         </header>
 
-        <!-- [Rest of your ATC content will go here] -->
-        
-        <div class="bg-yellow-50 p-5 rounded-lg mt-6 shadow-md border-l-4 border-yellow-500">
-            <h3 class="font-semibold text-lg text-gray-800 mb-3 flex items-center">
-                <i class="fas fa-lightbulb mr-2 text-yellow-600"></i> Prep Tips from Successful Candidates
-            </h3>
-            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
-                <li><strong>Intense Practice:</strong> Use specialized prep software (like JobTestPrep or TSATestPrep) for simulations. Many find it boosts confidence and scores.</li>
-                <li><strong>Mental Math:</strong> Practice fast subtraction/addition without paper (e.g., 87 - 34).</li>
-                <li><strong>Prioritize:</strong> In the radar simulation, always prioritize avoiding collisions (90% of score) over math pop-ups.</li>
-                <li><strong>Stay Calm:</strong> The test is designed to be overwhelming. Focus on recovering quickly from mistakes.</li>
-            </ul>
-        </div>
+        <main class="card">
+            <!-- 1. Eligibility & Foundations -->
+            <section class="section">
+                <h2><i class="fas fa-clipboard-check"></i> 1. Eligibility & Foundations</h2>
+                
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                    <h3>Basic Requirements</h3>
+                    <ul>
+                        <li>Be a U.S. citizen</li>
+                        <li>Pass medical and security clearances</li>
+                        <li>Complete an FAA-approved education program or gain work experience</li>
+                        <li>Pass the Air Traffic Skills Assessment (ATSA) exam</li>
+                    </ul>
+                </div>
 
-        <section class="mt-10">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3>Minimum Requirements</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i> U.S. Citizen</li>
+                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i> Under age 31 (at Academy start)</li>
+                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i> 3 years of work experience or a Bachelor's degree</li>
+                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i> Speak clear English</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3>The Profile</h3>
+                        <ul>
+                            <li><i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i> Must pass medical, psychological, and drug screenings</li>
+                            <li><i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i> High washout rate (up to 50% in training)</li>
+                            <li><i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i> Demands precision and quick decision-making</li>
+                            <li><i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i> Mandatory retirement at age 56</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. The 5-Step Hiring Pipeline -->
+            <section class="section">
+                <h2><i class="fas fa-road"></i> 2. The 5-Step Hiring Pipeline</h2>
+                
+                <div class="space-y-6">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Application (USAJobs)</h3>
+                            <p>Apply via USAJobs during open "off-the-street" bids. Requires resume, transcripts (if applicable), and CTI letter (if CTI graduate).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>ATSA Exam</h3>
+                            <p>Computer-based test assessing skills needed for ATC work. Covers angles/spatial relationships, memory, and decision-making under pressure.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Medical, Psychological, & Security</h3>
+                            <p>Rigorous checks including vision (20/20 correctable), hearing, drug screening, and a psychological evaluation (MMPI-2).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>FAA Academy (Oklahoma City)</h3>
+                            <p>3-5 months of intensive training. Students receive a salary during training. High failure rate (30-50%).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Facility Assignment & OJT</h3>
+                            <p>1-3 years of on-the-job training at an assigned facility. Must certify on all positions at the facility.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Compensation and Job Outlook -->
+            <section class="section">
+                <h2><i class="fas fa-dollar-sign"></i> 3. Compensation and Job Outlook</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3>Salary Range</h3>
+                        <ul>
+                            <li>Starting: $47,000 (Academy)</li>
+                            <li>Developmental: $40,000 - $80,000</li>
+                            <li>Certified (CPC): $120,000 - $200,000+</li>
+                            <li>Overtime: Time-and-a-half after 8 hours</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Federal employee benefits (TSP, FERS pension)</li>
+                            <li>Health, dental, and vision insurance</li>
+                            <li>Paid time off and sick leave</li>
+                            <li>Union representation (NATCA)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <h3>Job Outlook</h3>
+                    <p>The FAA hires in cycles, typically every 1-2 years. The next major hiring wave is expected in 2024-2025 due to retirements.</p>
+                    <p class="mt-2"><strong>Note:</strong> The FAA typically receives over 30,000 applications for 1,000-2,000 positions per hiring bid.</p>
+                </div>
+            </section>
+
+            <!-- 4. ATSA Test Structure and Prep -->
+            <section class="section">
+                <h2><i class="fas fa-laptop-code"></i> 4. ATSA Test Structure and Prep</h2>
+                
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                    <h3>Test Components</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-2">1. Cognitive Ability</h4>
+                            <ul>
+                                <li>Math and reading comprehension</li>
+                                <li>Logical reasoning</li>
+                                <li>Spatial awareness</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">2. Personality Assessment</h4>
+                            <ul>
+                                <li>Work style preferences</li>
+                                <li>Stress tolerance</li>
+                                <li>Decision-making approach</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <h3>Prep Tips</h3>
+                    <ul>
+                        <li><strong>Start early:</strong> Begin preparing 2-3 months before the test date</li>
+                        <li><strong>Practice tests:</strong> Use official ATSA prep materials</li>
+                        <li><strong>Time management:</strong> The test is timed - practice working quickly and accurately</li>
+                        <li><strong>Focus on weaknesses:</strong> Identify and improve in areas where you score lower</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 5. Key Resources -->
+            <section class="section">
+                <h2><i class="fas fa-link"></i> 5. Key Resources</h2>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="https://www.faa.gov/jobs/career_fields/aviation_careers" class="resource-card">
+                        <h3>FAA Careers</h3>
+                        <p>Official FAA careers website with ATC information and application portal</p>
+                    </a>
+                    
+                    <a href="https://www.pointsixtyfive.com/" class="resource-card">
+                        <h3>Points Sixty Five</h3>
+                        <p>Forum for ATC professionals and applicants with hiring advice</p>
+                    </a>
+                    
+                    <a href="https://www.jobtestprep.com/atfa-atsa" class="resource-card">
+                        <h3>ATSA Prep</h3>
+                        <p>Practice tests and study materials for the ATSA exam</p>
+                    </a>
+                    
+                    <a href="https://www.stuckmic.com/" class="resource-card">
+                        <h3>Stuck Mic</h3>
+                        <p>Community and resources for aspiring air traffic controllers</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Prep Tips from Successful Candidates -->
+            <section class="section">
+                <h2><i class="fas fa-lightbulb"></i> Prep Tips from Successful Candidates</h2>
+                
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h3>Top Study Strategies</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-2">1. Start Early</h4>
+                            <p>Begin preparing at least 2-3 months before the test date. Consistent, focused study sessions are more effective than cramming.</p>
+                            
+                            <h4 class="font-semibold mb-2 mt-4">2. Practice Tests</h4>
+                            <p>Take full-length, timed practice tests to simulate the actual testing environment and improve time management.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">3. Focus on Weak Areas</h4>
+                            <p>Identify and dedicate extra time to sections where you score lower in practice tests.</p>
+                            
+                            <h4 class="font-semibold mb-2 mt-4">4. Stay Healthy</h4>
+                            <p>Get enough sleep, eat well, and exercise regularly to maintain peak mental performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center text-sm text-gray-600 mt-12 pt-6 border-t border-gray-200">
+            <p>Last updated: November 2023</p>
+            <p class="mt-2">For official information, always refer to the <a href="https://www.faa.gov/" class="text-blue-600 hover:underline">FAA's official website</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>
+                    <li>Complete an FAA-approved education program or gain work experience</li>
+                    <li>Pass the Air Traffic Skills Assessment (ATSA) exam</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. The Streamlined 5-Step Hiring Pipeline -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-600 mb-8 flex items-center">
+                <i class="fas fa-road mr-3"></i> 2. The Streamlined 5-Step Hiring Pipeline
+            </h2>
+            <div class="space-y-6">
+                <!-- Step 1 -->
+                <div class="relative pl-16">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">1</div>
+                    <h3 class="text-xl font-semibold text-gray-800">Application Period</h3>
+                    <p class="text-gray-600">Submit your application during the FAA's open hiring period.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="relative pl-16">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">2</div>
+                    <h3 class="text-xl font-semibold text-gray-800">ATSA Exam</h3>
+                    <p class="text-gray-600">Take the Air Traffic Skills Assessment (ATSA) exam.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="relative pl-16">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">3</div>
+                    <h3 class="text-xl font-semibold text-gray-800">TOL & Clearances</h3>
+                    <p class="text-gray-600">Receive a Tentative Offer Letter (TOL) and complete medical/security clearances.</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="relative pl-16">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">4</div>
+                    <h3 class="text-xl font-semibold text-gray-800">FAA Academy</h3>
+                    <p class="text-gray-600">Complete training at the FAA Academy in Oklahoma City.</p>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="relative pl-16">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">5</div>
+                    <h3 class="text-xl font-semibold text-gray-800">Facility Assignment</h3>
+                    <p class="text-gray-600">Get assigned to an Air Traffic Control facility for on-the-job training.</p>
+                </div>
+            </div>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Compensation and Job Outlook -->
+        <section class="mb-12">
             <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
-                <i class="fas fa-link mr-3"></i> Key Resources
+                <i class="fas fa-dollar-sign mr-3"></i> 3. Compensation and Job Outlook
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-green-50 p-5 rounded-lg">
+                    <h3 class="font-semibold text-lg text-green-800 mb-3">Salary Range</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>Starting: $40,000 - $50,000 (Academy)</li>
+                        <li>Mid-Career: $80,000 - $120,000</li>
+                        <li>Senior: $120,000 - $200,000+ (with overtime)</li>
+                    </ul>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg">
+                    <h3 class="font-semibold text-lg text-purple-800 mb-3">Job Outlook</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>Steady demand with upcoming retirements</li>
+                        <li>FAA typically hires in cycles</li>
+                        <li>Growth in regional airports creating opportunities</li>
+                    </ul>
+                </div>
+            </div>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ATSA: Test Structure and Prep -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
+                <i class="fas fa-laptop-code mr-3"></i> 4. ATSA: Test Structure and Prep
+            </h2>
+            <div class="bg-yellow-50 p-5 rounded-lg">
+                <h3 class="font-semibold text-lg text-yellow-800 mb-3">ATSA Test Components</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-brain text-yellow-600 mt-1 mr-2"></i>
+                        <div>
+                            <strong>Cognitive Ability Test</strong>
+                            <p class="text-gray-700 text-sm">Measures problem-solving and decision-making skills</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-tasks text-yellow-600 mt-1 mr-2"></i>
+                        <div>
+                            <strong>Personality Assessment</strong>
+                            <p class="text-gray-700 text-sm">Evaluates your work style and stress tolerance</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-stopwatch text-yellow-600 mt-1 mr-2"></i>
+                        <div>
+                            <strong>Time Management</strong>
+                            <p class="text-gray-700 text-sm">Tests ability to handle multiple tasks under time pressure</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="mt-6">
+                    <h3 class="font-semibold text-lg text-yellow-800 mb-3">Prep Tips</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Practice with ATSA prep materials</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Take practice tests under timed conditions</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Work on improving your multitasking abilities</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Key Resources -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
+                <i class="fas fa-link mr-3"></i> 5. Key Resources
+            </h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <a href="https://www.faa.gov/jobs/career_fields/aviation_careers" class="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                    <h3 class="font-semibold text-blue-700">FAA Careers</h3>
+                    <p class="text-sm text-gray-600">Official FAA careers website with ATC information</p>
+                </a>
+                <a href="https://www.pointsixtyfive.com/" class="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                    <h3 class="font-semibold text-blue-700">Points Sixty Five</h3>
+                    <p class="text-sm text-gray-600">Forum for ATC professionals and applicants</p>
+                </a>
+                <a href="https://www.jobtestprep.com/atfa-atsa" class="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                    <h3 class="font-semibold text-blue-700">ATSA Prep</h3>
+                    <p class="text-sm text-gray-600">Practice tests and study materials</p>
+                </a>
+                <a href="https://www.stuckmic.com/" class="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                    <h3 class="font-semibold text-blue-700">Stuck Mic</h3>
+                    <p class="text-sm text-gray-600">ATC community and resources</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Prep Tips Section -->
+                <div class="flex relative md:pl-12">
+                    <div class="step-icon bg-blue-600 z-10">3</div>
+                    <div class="flex-1 ml-4 p-4 bg-white rounded-lg shadow-lg border border-gray-100">
+                        <h3 class="font-bold text-lg text-gray-800">Medical, Psychological, & Security</h3>
+                        <p class="text-sm text-gray-600">Rigorous checks including vision (20/20 correctable), hearing, drug screening, and a psychological evaluation (MMPI-2).</p>
+                    </div>
+                </div>
+
+                <!-- Step 4: TOL & Academy -->
+                <div class="flex relative md:pl-12">
+                    <div class="step-icon bg-blue-600 z-10">4</div>
+                    <div class="flex-1 ml-4 p-4 bg-white rounded-lg shadow-lg border border-gray-100">
+                        <h3 class="font-bold text-lg text-gray-800">FAA Academy (Oklahoma City)</h3>
+                        <p class="text-sm text-gray-600">Receive a Tentative Offer Letter (TOL) with a facility assignment. Complete 3-5 months of paid, initial training ($22.61/hour starting pay).</p>
+                    </div>
+                </div>
+
+                <!-- Step 5: OJT & CPC -->
+                <div class="flex relative md:pl-12">
+                    <div class="step-icon bg-blue-600 z-10">5</div>
+                    <div class="flex-1 ml-4 p-4 bg-white rounded-lg shadow-lg border border-gray-100">
+                        <h3 class="font-bold text-lg text-gray-800">On-the-Job Training & Certification</h3>
+                        <p class="text-sm text-gray-600">1-3 years of OJT at your assigned facility. Successful completion leads to <strong>Certified Professional Controller (CPC)</strong> status.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-8 border-gray-200">
+
+        <!-- Section 3: Salary and Outlook -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-600 mb-8 flex items-center">
+                <i class="fas fa-dollar-sign mr-3"></i> 3. Compensation and Job Outlook
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Salary Box -->
+                <div class="bg-blue-50 p-5 rounded-lg shadow-md col-span-1">
+                    <h3 class="font-semibold text-lg text-gray-800 mb-3">Median CPC Salary</h3>
+                    <p class="text-4xl font-extrabold text-blue-700">$137,380</p>
+                    <p class="text-xs text-gray-500 mt-1">(2023 BLS Data)</p>
+                </div>
+
+                <!-- Visual: Pay Hierarchy (Simple Bar Chart/Graphic) -->
+                <div class="bg-blue-50 p-5 rounded-lg shadow-md md:col-span-2">
+                    <h3 class="font-semibold text-lg text-gray-800 mb-3">Pay Progression Overview</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <span class="w-1/4 text-sm font-medium">Academy Trainee</span>
+                            <div class="flex-1 bg-blue-200 h-4 rounded-full ml-3">
+                                <div class="bg-blue-600 h-4 rounded-full" style="width: 25%;"></div>
+                            </div>
+                            <span class="ml-3 text-xs font-bold text-gray-700">~$47K</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-1/4 text-sm font-medium">Developmental ATCS</span>
+                            <div class="flex-1 bg-blue-200 h-4 rounded-full ml-3">
+                                <div class="bg-blue-600 h-4 rounded-full" style="width: 45%;"></div>
+                            </div>
+                            <span class="ml-3 text-xs font-bold text-gray-700">$40K - $80K</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-1/4 text-sm font-medium">Certified (CPC)</span>
+                            <div class="flex-1 bg-blue-200 h-4 rounded-full ml-3">
+                                <div class="bg-blue-600 h-4 rounded-full" style="width: 80%;"></div>
+                            </div>
+                            <span class="ml-3 text-xs font-bold text-gray-700"><strong>$160K+ Avg.</strong></span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Pay scales are specialized based on facility traffic level (locality pay included).</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-5 rounded-lg mt-6 shadow-md border-l-4 border-gray-300">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Key Benefits</h3>
+                <p class="text-sm text-gray-700">Federal pension (FERS), excellent health insurance, Thrift Savings Plan, and <strong>3 months paid parental leave</strong>.</p>
+            </div>
+        </section>
+
+        <hr class="my-8 border-gray-200">
+
+        <!-- Section 4: ATSA Test Prep Guide -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-600 mb-8 flex items-center">
+                <i class="fas fa-laptop-code mr-3"></i> 4. ATSA: Test Structure and Prep
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- ATSA Overview -->
+                <div class="bg-red-50 p-5 rounded-lg shadow-md border-l-4 border-red-500">
+                    <h3 class="font-bold text-xl text-red-700 mb-3">Test Overview</h3>
+                    <p class="text-sm text-gray-700 mb-3">
+                        The ATSA (Air Traffic Skills Assessment) is a 3.5-hour aptitude test. It's <strong>aptitude-based</strong>, so no prior aviation knowledge is required. You must achieve <strong>"Well Qualified"</strong> or better to proceed.
+                    </p>
+                    
+                    <!-- Washout Visual -->
+                    <div class="flex justify-center items-center mt-4">
+                        <div class="radial-progress" style="--progress:90;">10%</div>
+                    </div>
+                    <p class="text-center text-xs text-gray-600 mt-2">Approximate Pass Rate for all hiring steps.</p>
+                </div>
+
+                <!-- Key Subtests Card -->
+                <div class="bg-red-50 p-5 rounded-lg shadow-md border-l-4 border-red-500">
+                    <h3 class="font-bold text-xl text-red-700 mb-3">Key Subtests (7 Total)</h3>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-brain text-red-500 w-4 mr-2"></i> <strong>Memory Games:</strong> Recall/update assigned letters/numbers and mental math (speed differences).</li>
+                        <li><i class="fas fa-sync-alt text-red-500 w-4 mr-2"></i> <strong>Scenarios/Radar:</strong> High-pressure multitasking, avoiding collisions, and answering math pop-ups.</li>
+                        <li><i class="fas fa-arrows-alt-h text-red-500 w-4 mr-2"></i> <strong>Spatial Relations:</strong> Judge plane direction (head-on, overtaking, same direction).</li>
+                        <li><i class="fas fa-list-ol text-red-500 w-4 mr-2"></i> <strong>Logical Reasoning</strong> & Reading Comprehension.</li>
+                        <li><i class="fas fa-user-friends text-red-500 w-4 mr-2"></i> <strong>Personality Inventory:</strong> Focus on consistency in your answers.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 p-5 rounded-lg mt-6 shadow-md border-l-4 border-yellow-500">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3 flex items-center"><i class="fas fa-lightbulb mr-2 text-yellow-600"></i> Prep Tips from Successful Candidates</h3>
+                <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                    <li><strong>Intense Practice:</strong> Use specialized prep software (like JobTestPrep or TSATestPrep) for simulations. Many find it boosts confidence and scores.</li>
+                    <li><strong>Mental Math:</strong> Practice fast subtraction/addition without paper (e.g., 87 - 34).</li>
+                    <li><strong>Prioritize:</strong> In the radar simulation, always prioritize avoiding collisions (90% of score) over math pop-ups.</li>
+                    <li><strong>Stay Calm:</strong> The test is designed to be overwhelming. Focus on recovering quickly from mistakes.</li>
+                </ul>
+            </div>
+        </section>
+
+        <hr class="my-8 border-gray-200">
+
+        <!-- Section 5: Resources -->
+        <section>
+            <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
+                <i class="fas fa-link mr-3"></i> 5. Key Resources
             </h2>
             <div class="bg-gray-50 p-5 rounded-lg shadow-md">
                 <ul class="space-y-3 text-sm">
